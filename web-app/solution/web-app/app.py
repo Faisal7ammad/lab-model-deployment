@@ -4,7 +4,7 @@ import pickle
 
 app = Flask(__name__)
 
-model = pickle.load(open("ufo-model.pkl", "rb"))
+model = pickle.load(open("/Users/FH/Desktop/Ironhack-AI/Github/lab-model-deployment/web-app/solution/web-app/web-app.pkl", "rb"))
 
 
 @app.route("/")
@@ -21,10 +21,14 @@ def predict():
 
     output = prediction[0]
 
-    countries = ["Australia", "Canada", "Germany", "UK", "US"]
+    Shapes = ['cylinder', 'light', 'circle', 'sphere', 'disk', 'fireball',
+       'unknown', 'oval', 'other', 'cigar', 'rectangle', 'chevron',
+       'triangle', 'formation', 'delta', 'changing', 'egg',
+       'diamond', 'flash', 'teardrop', 'cone', 'cross', 'pyramid',
+       'round', 'crescent', 'flare', 'hexagon', 'dome', 'changed']
 
     return render_template(
-        "index.html", prediction_text="Likely country: {}".format(countries[output])
+        "index.html", prediction_text="Likely shape: {}".format(Shapes[output])
     )
 
 
